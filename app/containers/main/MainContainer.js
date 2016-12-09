@@ -1,9 +1,9 @@
 import React from 'react';
 
 const MainContainer = React.createClass({
-  render() {
+  render () {
     return (
-      <div>React is ready to go!</div >
+      <div>{'React is ready to go!'}</div>
     );
   }
 });
