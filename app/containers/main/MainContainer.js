@@ -1,9 +1,16 @@
 import React from 'react';
+import {Navigation} from 'components';
+import {container, innerContainer} from './styles.css';
 
 const MainContainer = React.createClass({
   render () {
     return (
-      <div>{'React is ready to go!'}</div>
+      <div className={container}>
+        <Navigation isAuthed={false}/>
+        <div className={innerContainer}>
+          {this.props.children}
+        </div>
+      </div>
     );
   }
 });
