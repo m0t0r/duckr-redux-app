@@ -2,7 +2,7 @@ import React from 'react';
 import {Home} from 'components';
 
 const HomeContainer = React.createClass({
-  render() {
+  render () {
     return (
       <Home/>
     );
