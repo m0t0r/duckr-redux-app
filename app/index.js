@@ -1,12 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import routes from './config/routes';
 
-const Main = React.createClass({
-  render() {
-    return (
-      <div>React is ready to go!</div >
-    );
-  }
-});
-
-ReactDOM.render(<Main/>, document.getElementById('app'));
+ReactDOM.render(routes, document.getElementById('app'));
