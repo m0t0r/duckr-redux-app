@@ -1,4 +1,4 @@
-import auth from 'helpers/auth';
+import auth, {logout} from 'helpers/auth';
 
 /* Action creators */
 
@@ -46,12 +46,19 @@ function fetchingUserSuccess (uid, user, timestamp) {
 export function fetchAndHandleAuthUser() {
   return function (dispatch) {
     dispatch(fetchingUser());
-    auth().then(user => {
+    return auth().then(user => {
       dispatch(fetchingUserSuccess(user.uid, user, Date.now()));
       dispatch(authUser(user.uid));
     })
       .catch(() => dispatch(fetchingUserError()));
-  }
+  };
+}
+
+export function logoutAndUnauth() {
+  return function (dispatch) {
+    logout();
+    dispatch(unauthUser());
+  };
 }
 
 /* Reducers */
