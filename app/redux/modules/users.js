@@ -1,14 +1,14 @@
 import auth, {logout, saveUser} from 'helpers/auth';
 import {formatUserInfo} from 'helpers/utils';
 
-/* Action creators */
-
 const AUTH_USER = 'AUTH_USER';
 const UNAUTH_USER = 'UNAUTH_USER';
 const FETCHING_USER = 'FETCHING_USER';
 const FETCHING_USER_ERROR = 'FETCHING_USER_ERROR';
 const FETCHING_USER_SUCCESS = 'FETCHING_USER_SUCCESS';
 const REMOVE_FETCHING_USER = 'REMOVE_FETCHING_USER';
+
+/* Action creators */
 
 export function authUser (uid) {
   return {
