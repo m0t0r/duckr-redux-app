@@ -1,7 +1,8 @@
-  import {Modal} from 'components';
+import {Modal} from 'components';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as modalActionCreators from 'redux/modules/modal';
+import * as ducksActionCreators from 'redux/modules/ducks';
 
 function mapStateToProps({modal, users}) {
   const duckTextLength = modal.duckText.length;
@@ -14,7 +15,7 @@ function mapStateToProps({modal, users}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(modalActionCreators, dispatch);
+  return bindActionCreators({...modalActionCreators, ...ducksActionCreators}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
