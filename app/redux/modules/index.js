@@ -3,3 +3,4 @@ export modal from './modal';
 export ducks from './ducks';
 export usersDucks from './users-ducks';
 export feed from './feed';
+export listeners from './listeners';
