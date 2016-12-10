@@ -1,6 +1,5 @@
 import React, {PropTypes} from 'react';
 import {Authenticate} from 'components';
-import auth from 'helpers/auth';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as userActionCreators from 'redux/modules/users';
@@ -9,18 +8,10 @@ const AuthenticateContainer = React.createClass({
   propTypes: {
     isFetching: PropTypes.bool.isRequired,
     error: PropTypes.string.isRequired,
-    authUser: PropTypes.func.isRequired,
-    fetchingUser: PropTypes.func.isRequired,
-    fetchingUserSuccess: PropTypes.func.isRequired,
-    fetchingUserError: PropTypes.func.isRequired
+    fetchAndHandleAuthUser: PropTypes.func.isRequired
   },
   handleAuth () {
-    this.props.fetchingUser();
-    auth().then(user => {
-      this.props.fetchingUserSuccess(user.uid, user, Date.now());
-      this.props.authUser(user.uid);
-    })
-      .catch(() => this.props.fetchingUserError());
+    this.props.fetchAndHandleAuthUser();
   },
   render () {
     return (
