@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {container, innerContainer} from './styles.css';
 import {bindActionCreators} from 'redux';
 import * as userActionCreators from 'redux/modules/users';
+import * as usersLikesActionCreators from 'redux/modules/users-likes';
 import {formatUserInfo} from 'helpers/utils';
 import {firebaseAuth} from 'config/constants';
 
@@ -14,7 +15,8 @@ const MainContainer = React.createClass({
     isFetching: PropTypes.bool.isRequired,
     authUser: PropTypes.func.isRequired,
     fetchingUserSuccess: PropTypes.func.isRequired,
-    removeFetchingUser: PropTypes.func.isRequired
+    removeFetchingUser: PropTypes.func.isRequired,
+    setUsersLikes: PropTypes.func.isRequired
   },
   contextTypes: {
     router: PropTypes.object.isRequired
@@ -27,6 +29,7 @@ const MainContainer = React.createClass({
 
         this.props.authUser(user.uid);
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now());
+        this.props.setUsersLikes();
 
         if (this.props.location.pathname === '/' || this.props.location.pathname === '/auth') {
           this.context.router.replace('feed');
@@ -62,7 +65,7 @@ function mapStateToProps({users}) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(userActionCreators, dispatch);
+  return bindActionCreators({...userActionCreators, ...usersLikesActionCreators}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

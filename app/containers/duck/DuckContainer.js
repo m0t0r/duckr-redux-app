@@ -1,6 +1,8 @@
 import React, {PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Duck} from 'components';
+import * as userLikesActionCreators from 'redux/modules/users-likes';
 
 const DuckContainer = React.createClass({
   propTypes: {
@@ -22,11 +24,11 @@ const DuckContainer = React.createClass({
     };
   },
   goToProfile(e) {
-    e.preventDefault();
+    e.stopPropagation();
     this.context.router.push('/' + this.props.duck.uid);
   },
   handleClick(e) {
-    e.preventDefault();
+    e.stopPropagation();
     this.context.router.push('/duck-detail/' + this.props.duck.duckId);
   },
   render() {
@@ -50,4 +52,8 @@ function mapStateToProps({ducks, likeCount, usersLikes}, props) {
   };
 }
 
-export default connect(mapStateToProps)(DuckContainer);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(userLikesActionCreators, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DuckContainer);
