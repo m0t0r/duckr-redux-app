@@ -10,7 +10,8 @@ const FeedContainer = React.createClass({
     error: PropTypes.string.isRequired,
     isFetching: PropTypes.bool.isRequired,
     setAndHandleFeedListener: PropTypes.func.isRequired,
-    resetNewDucksAvailable: PropTypes.func.isRequired
+    resetNewDucksAvailable: PropTypes.func.isRequired,
+    duckIds: PropTypes.array.isRequired
   },
   componentDidMount() {
     this.props.setAndHandleFeedListener();
@@ -21,6 +22,7 @@ const FeedContainer = React.createClass({
         isFetching={this.props.isFetching}
         error={this.props.error}
         resetNewDucksAvailable={this.props.resetNewDucksAvailable}
+        duckIds={this.props.duckIds}
       />
     );
   }
@@ -30,7 +32,8 @@ function mapStateToProps({feed}) {
   return {
     isFetching: feed.isFetching,
     error: feed.error,
-    newDucksAvailable: feed.newDucksAvailable
+    newDucksAvailable: feed.newDucksAvailable,
+    duckIds: feed.duckIds
   };
 }
 

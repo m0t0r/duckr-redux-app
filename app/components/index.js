@@ -5,3 +5,4 @@ export GithubAuthButton from './github-auth-button/GithubAuthButton';
 export Feed from './feed/Feed';
 export Logout from './logout/Logout';
 export Modal from './modal/Modal';
+export Duck from './duck/Duck';
