@@ -1,5 +1,6 @@
 import auth, {logout, saveUser} from 'helpers/auth';
 import {formatUserInfo} from 'helpers/utils';
+import {fetchUser} from 'helpers/api';
 
 const AUTH_USER = 'AUTH_USER';
 const UNAUTH_USER = 'UNAUTH_USER';
@@ -54,10 +55,9 @@ export function removeFetchingUser() {
 export function fetchAndHandleAuthUser() {
   return function (dispatch) {
     dispatch(fetchingUser());
-    return auth().then((user) => {
+    return auth().then(({user}) => {
       const userData = user.providerData[0];
       const userInfo = formatUserInfo(userData.displayName, userData.photoURL, userData.uid);
-
       return dispatch(fetchingUserSuccess(user.uid, userInfo, Date.now()));
     })
       .then(({user}) => saveUser(user))
@@ -70,6 +70,15 @@ export function logoutAndUnauth() {
   return function (dispatch) {
     logout();
     dispatch(unauthUser());
+  };
+}
+
+export function fetchAndHandleUser(uid) {
+  return function (dispatch) {
+    dispatch(fetchingUser());
+    return fetchUser(uid)
+      .then((user) => dispatch(fetchingUserSuccess(uid, user, Date.now())))
+      .catch(() => dispatch(fetchingUserError()));
   };
 }
 
