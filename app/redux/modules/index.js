@@ -6,3 +6,4 @@ export feed from './feed';
 export listeners from './listeners';
 export usersLikes from './users-likes';
 export likeCount from './like-count';
+export replies from './replies';
