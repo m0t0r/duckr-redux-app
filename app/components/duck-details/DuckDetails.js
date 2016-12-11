@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {DuckContainer} from 'containers';
+import {DuckContainer, RepliesContainer} from 'containers';
 import {formatReply} from 'helpers/utils';
 
 import {
@@ -43,7 +43,7 @@ const DuckDetails = (props) => {
                }/>
             </div>
             <div className={repliesContainer}>
-              REPLY SECTION HERE
+              <RepliesContainer duckId={props.duckId}/>
             </div>
           </div>
       }

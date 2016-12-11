@@ -1,4 +1,4 @@
-import {posReply} from 'helpers/api';
+import {posReply, fetchReplies} from 'helpers/api';
 
 const ADD_REPLY = 'ADD_REPLY';
 const REMOVE_REPLY = 'REMOVE_REPLY';
@@ -64,6 +64,15 @@ export function addAndHandleReply (duckId, reply) {
       dispatch(removeReply(duckId, replyWithId.replyId));
       dispatch(addReplyError());
     });
+  };
+}
+
+export function fetchAndHandleReplies(duckId) {
+  return function (dispatch) {
+    dispatch(fetchingReplies());
+    fetchReplies(duckId)
+      .then(replies => dispatch(fetchingRepliesSuccess(duckId, replies, Date.now())))
+      .catch(() => dispatch(fetchingRepliesError()));
   };
 }
 

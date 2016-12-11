@@ -8,3 +8,4 @@ export Modal from './modal/Modal';
 export Duck from './duck/Duck';
 export User from './user/User';
 export DuckDetails from './duck-details/DuckDetails';
+export Replies from './replies/Replies';
