@@ -5,12 +5,16 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {checkIfAuthed} from './helpers/auth';
+import {routerReducer, syncHistoryWithStore} from 'react-router-redux';
+import {hashHistory} from 'react-router';
 import * as reducers from 'redux/modules';
 
-const store = createStore(combineReducers(reducers), compose(
+const store = createStore(combineReducers({...reducers, routing: routerReducer}), compose(
   applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 ));
+
+const history = syncHistoryWithStore(hashHistory, store);
 
 function checkAuth(nextState, replace) {
   if(store.getState().users.isFetching) {
@@ -29,4 +33,4 @@ function checkAuth(nextState, replace) {
   }
 }
 
-ReactDOM.render(<Provider store={store}>{getRoutes(checkAuth)}</Provider>, document.getElementById('app'));
+ReactDOM.render(<Provider store={store}>{getRoutes(checkAuth, history)}</Provider>, document.getElementById('app'));
