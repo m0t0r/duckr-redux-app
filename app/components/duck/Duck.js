@@ -28,8 +28,8 @@ const Duck = (props) => {
             ? null
             : <Reply className={icon}/>
           }
-          <div className="actionContainer">
-            <Star className={starIcon} onClick={(e) => starFn(props.duck.duckId, e)}/>
+          <div className={actionContainer}>
+            <Star className={starIcon} onClick={(e) => starFn(props.duck.duckId, e)} />
             {props.hideLikeCount ? null : <div>{props.numberOfLikes}</div>}
           </div>
         </div>

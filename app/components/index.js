@@ -7,3 +7,4 @@ export Logout from './logout/Logout';
 export Modal from './modal/Modal';
 export Duck from './duck/Duck';
 export User from './user/User';
+export DuckDetails from './duck-details/DuckDetails';

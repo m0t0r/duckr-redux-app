@@ -66,3 +66,13 @@ export function fetchUsersDucks(uid) {
   return ref.child(`usersDucks/${uid}`).once('value')
     .then(snapshot => snapshot.val() || {});
 }
+
+export function fetchDuck(duckId) {
+  return ref.child(`ducks/${duckId}`).once('value')
+    .then(snapshot => snapshot.val() || {});
+}
+
+export function fetchLikeCount(duckId) {
+  return ref.child(`likesCount/${duckId}`).once('value')
+    .then(snapshot => snapshot.val() || 0);
+}

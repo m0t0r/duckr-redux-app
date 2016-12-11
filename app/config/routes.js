@@ -6,7 +6,8 @@ import {
   AuthenticateContainer,
   FeedContainer,
   LogoutContainer,
-  UserContainer
+  UserContainer,
+  DuckDetailsContainer
 } from 'containers';
 
 export default function getRoutes(checkAuth) {
@@ -16,7 +17,8 @@ export default function getRoutes(checkAuth) {
         <Route path='auth' component={AuthenticateContainer} onEnter={checkAuth}/>
         <Route path='feed' component={FeedContainer} onEnter={checkAuth}/>
         <Route path='logout' component={LogoutContainer}/>
-        <Route path='users/:uid' component={UserContainer}/>
+        <Route path='users/:uid' component={UserContainer} onEnter={checkAuth}/>
+        <Route path='duck-detail/:duckId' component={DuckDetailsContainer} onEnter={checkAuth}/>
         <IndexRoute component={HomeContainer} onEnter={checkAuth}/>
       </Route>
     </Router>
